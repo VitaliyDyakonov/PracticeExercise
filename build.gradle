@@ -1,0 +1,39 @@
+plugins {
+    id 'java'
+    id "io.qameta.allure" version "2.11.2"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+//Доп конфигурация из за проблем с кодировкой
+compileJava.options.encoding = 'UTF-8' // устанавливает кодировку для компилируемого кода
+javadoc.options.encoding = 'UTF-8' // устанавливает кодировку для генерируемой документации
+compileTestJava.options.encoding = 'UTF-8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    testRuntimeOnly 'org.slf4j:slf4j-simple:2.0.6'
+    testImplementation 'com.codeborne:selenide:6.13.0'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+
+    runtimeOnly 'org.aspectj:aspectjweaver:1.9.9.1'
+    testImplementation 'io.qameta.allure:allure-junit5:2.20.1'
+    testImplementation 'io.qameta.allure:allure-commandline:2.20.1'
+    testImplementation 'io.qameta.allure:allure-assertj:2.20.1'
+    testImplementation 'io.qameta.allure:allure-java-commons:2.20.1'
+    testImplementation 'io.qameta.allure:allure-selenide:2.20.1'
+}
+
+test {
+    useJUnitPlatform()
+}
