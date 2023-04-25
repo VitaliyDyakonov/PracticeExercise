@@ -3,6 +3,7 @@ package Pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.selector.ByText;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.*;
@@ -30,6 +31,7 @@ public class EditFieldsPage {
         return this;
     }
 
+    @Step("Ввести текст в поле \"Enter your email address\"")
     public EditFieldsPage enterEmail(String email){
         emailField.setValue(email);
         return this;
@@ -40,11 +42,13 @@ public class EditFieldsPage {
         return this;
     }
 
+    @Step("Добавить текст к тексту в поле \"Append a text and press keyboard tab\"")
     public EditFieldsPage appendText(String text){
         appendTextField.append(text);
         return this;
     }
 
+    @Step("Нажать кнопку клавиатуры Tab")
     public EditFieldsPage appendFieldPressTab(){
         appendTextField.pressTab();
         return this;
@@ -55,6 +59,7 @@ public class EditFieldsPage {
         return this;
     }
 
+    @Step("Получить текст из поля \"Get default text entered\"")
     public String getTextInField(){
         return getTextField.getValue();
     }
@@ -64,6 +69,7 @@ public class EditFieldsPage {
         return this;
     }
 
+    @Step("Очистить текстовое поле \"Clear the text\"")
     public EditFieldsPage clearText(){
         clearTextField.clear();
         return this;
@@ -74,6 +80,7 @@ public class EditFieldsPage {
         return this;
     }
 
+    @Step("Поле \"Confirm that edit field is disabled\" отключено")
     public EditFieldsPage assertDisabledField(){
         disabledField.shouldNotBe(enabled);
         return this;
